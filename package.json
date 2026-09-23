@@ -1,0 +1,27 @@
+{
+  "name": "brocon",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "DOM-first browser control with Jev decisions and a separate text model",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc --noEmit",
+    "start": "npm run build --silent && node --env-file-if-exists=.env dist/src/cli.js",
+    "demo": "npm run build --silent && node dist/examples/local-demo.js",
+    "test": "npm run build --silent && node --test dist/tests/*.test.js",
+    "test:browser": "npm run build --silent && node dist/tests/browser.integration.js",
+    "tls": "node --env-file-if-exists=.env scripts/tls.mjs",
+    "panel": "npm run tls --silent && npm run build --silent && node --env-file-if-exists=.env dist/src/server/main.js",
+    "test:panel": "npm run tls --silent && npm run build --silent && node dist/tests/panel.integration.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/node": "^22.19.0"
+  }
+}
