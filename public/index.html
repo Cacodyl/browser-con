@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Brocon · Browser control</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<header><a class="brand" href="/">b<span>↗</span> <strong>brocon</strong></a><span class="header-note">BROWSER CONTROL LAB</span><span id="connection" class="connection">Connecting…</span></header>
+<main>
+<section class="intro"><div><p class="eyebrow">GOAL → DECISION → ACTION</p><h1>Give the browser a goal.</h1><p>Watch what it sees, what it chooses, and what happens next.</p></div><span class="pill">DIRECT CDP <span>·</span> JEV + TEXT MODEL</span></section>
+<div class="workspace">
+<aside>
+<section class="card setup"><div class="section-label"><span>01 / RUN SETUP</span><span class="dot"></span></div>
+<form id="run-form"><label for="url">Starting website</label><input id="url" name="url" type="url" placeholder="https://www.google.com" required>
+<label for="goal">Natural language goal</label><textarea id="goal" name="goal" rows="6" maxlength="4000" placeholder="Search for the official Node.js documentation and open it." required></textarea>
+<div class="budget"><label for="maxSteps">Decision budget</label><input id="maxSteps" type="number" min="1" max="50" value="30" required><span>attempts</span></div>
+<button class="primary" id="start" type="submit" disabled>Start browser run <span>↗</span></button></form>
+<button class="secondary" id="demo" type="button" disabled>Try the local form demo</button><p class="hint" id="provider-status">Checking model configuration…</p>
+<p id="error" class="error" role="alert" hidden></p></section>
+<section class="card recent"><div class="section-label">RECENT RUNS</div><div id="runs"><p class="empty-small">Your runs will appear here.</p></div></section>
+<div class="route"><span>CONTROL PANEL</span><i>↓ HTTPS + live events</i><span>LOCAL RUN SERVICE</span><i>↓ snapshot → Jev → action</i><span>CHROME / CDP</span></div>
+</aside>
+<section class="monitor">
+<div class="card runbar"><div><span class="eyebrow">CURRENT RUN</span><h2 id="run-status">Ready when you are</h2><p id="run-goal">Start a run to inspect every browser decision.</p></div><div class="run-actions"><a id="download" class="text-button" hidden>Export trace ↓</a><button id="stop" class="stop" disabled>Stop run</button></div></div>
+<div class="stats"><div><span>ATTEMPT</span><strong id="stat-attempt">—</strong></div><div><span>CONTROLS SEEN</span><strong id="stat-controls">—</strong></div><div><span>JEV LATENCY</span><strong id="stat-latency">—</strong></div><div><span>CHOSEN ACTION</span><strong id="stat-action">—</strong></div></div>
+<div id="demo-notice" class="notice" hidden>Local demo · deterministic choices and synthetic scores. No model API calls.</div>
+<div class="inspect-grid">
+<section class="card timeline"><div class="section-label"><span>02 / LIVE TIMELINE</span><span id="event-count">0 EVENTS</span></div><div id="timeline" aria-live="polite"><div class="empty"><span class="empty-icon">⌁</span><h3>Every step, in view.</h3><p>Observations, model decisions, and browser actions will stream here.</p></div></div></section>
+<section class="card inspector"><div class="section-label"><span>03 / DECISION INSPECTOR</span><select id="attempt-select" aria-label="Inspect attempt"><option value="">No attempts yet</option></select></div>
+<div class="tabs" role="tablist"><button class="active" role="tab" aria-selected="true" data-tab="scores">Scores</button><button role="tab" aria-selected="false" data-tab="snapshot">DOM snapshot</button><button role="tab" aria-selected="false" data-tab="raw">Raw events</button></div>
+<div id="scores" class="tab-content"><p class="empty-small">Jev’s operation and target probabilities will appear after a decision.</p></div>
+<div id="snapshot" class="tab-content" hidden><p class="empty-small">Waiting for the first observation.</p></div>
+<div id="raw" class="tab-content" hidden><pre>No events yet.</pre></div>
+</section></div>
+<p class="footnote">A “done” decision is a model claim. Independent verification is reported separately. Traces contain page text and field values; API keys are never included.</p>
+</section></div>
+</main>
+</body></html>
